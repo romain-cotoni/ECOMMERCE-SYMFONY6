@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte - site de ecommerce{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column align-items-center fs-4">
+        <h1 class="my-5">Mon compte</h1>
+        <p>Bienvenue {{app.user.firstname}} dans votre compte.</p>
+        <a href="{{ path('account_password') }}">Modifier mon mot de passe</a>
+        <a href="{{ path('account_address')  }}">Gérer mes adresses</a>
+        <a href="{{ path('order')            }}">Mes commandes</a>
+    </div>
+{% endblock %}

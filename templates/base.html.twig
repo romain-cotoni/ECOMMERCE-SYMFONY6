@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🇫🇷</text></svg>">
+        <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    </head>
+    <body>
+        <div class="navbar-item-custom fs-5">
+            <div class="text-end me-1" style="height:25%">
+                <a href="{{ path('home')      }}">Boutique</a>    | 
+                <a href="{{ path('cart')      }}">Mon panier</a>  | 
+                <a href="{{ path('account')   }}">Mon compte</a>  | 
+                {% if app.user %}
+                <a href="{{ path('app_logout')}}">Déconnexion</a> |
+                {% else %}
+                <a href="{{ path('register')  }}">Inscription</a> |
+                {% endif %}
+                <a href="{{ path('admin')     }}">Admin(test)</a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="height:50%">
+                <h3 class="text-center display-6">Démonstration ecommerce en symfony</h3>
+            </div>
+        </div>
+        <div class="main">
+            {% block body %}{% endblock %}
+        </div>
+        <div class="footer-custom d-flex justify-content-center align-items-center">
+            <p class=" display-6">mon jolie footer</p>
+        </div>
+        <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    </body>
+</html>

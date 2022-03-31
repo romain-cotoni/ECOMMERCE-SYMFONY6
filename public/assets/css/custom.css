@@ -1,0 +1,32 @@
+body {
+    background-color: rgba(255, 255, 255, 1);
+    min-width       : 100%;
+}
+
+.navbar-item-custom {
+    background-color: rgba(141, 145, 146, 0.568);
+    text-decoration : none;
+    color           : rgba(48, 45, 45, 0.534);
+    height          : 20vh;
+}
+
+a {
+    text-decoration: none;
+    color          : rgba(48, 45, 45, 0.534);
+}
+
+a:hover {
+    color: black;
+}
+
+.main {
+    min-height: 60vh;
+}
+
+.footer-custom {
+    background-color: rgba(141, 145, 146, 0.568);
+    color           : rgba(48, 45, 45, 0.534);
+    height          : 20vh;
+    width           : 100%;
+}
+

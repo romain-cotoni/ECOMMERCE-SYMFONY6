@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{#{% block javascript %}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}#}
+
+{% block title %}Paiement de ma commande - ecommerce{% endblock %}
+
+{% block body %}
+    <h2 class="mt-3 display-6 text-center">Mon récapitulatif</h2>
+    <p class="fs-5">Vérifiez vos informations avant de payer votre commande.</p>
+    <hr>
+    <div class="row mx-0">
+        <div class="col-md-6 fs-5">
+            <strong>Mon adresse de livraison</strong><br/>
+            <div class="mt-4">
+                {{ delivery|raw }}
+            </div>
+            <hr>
+            <strong>Mon transporteur</strong><br/>
+            <div class="">
+                {{ carrier.name }}<br/>
+                {{ carrier.description }}<br/>
+                {{ (carrier.price / 100)|number_format(2, ',', '.') }} €
+            </div>
+        </div>
+        <div class="col-md-6 fs-5">
+            <div class="text-center">
+                <b>Ma commande</b><br/>
+            </div>
+            <div class="order-summary">
+                {% set total = null %}
+                {% for key,article in cart %}
+                    <div class="row {% if key > 0 %}mt-2{% endif %}">
+                        <div class="col-2">
+                            <img src="/uploads/{{ article.article.image }}" alt="{{ article.article.name }}" height="75px">
+                        </div>
+                        <div class="col-8 my-auto">
+                            {{ article.article.name }}<br/>
+                            <small>
+                                <br/>
+                                x {{ article.quantity }}
+                            </small>
+                        </div>
+                        <div class="col-2 my-auto">
+                            {{ ((article.article.price * article.quantity ) / 100)|number_format(2, ',', '.') }} €
+                        </div>
+                    </div>
+                    {% set total = total + (article.article.price * article.quantity) %}
+                {% endfor %}
+            </div>
+
+            <hr>
+            <strong>Sous-Total :</strong> {{ (total / 100)|number_format(2, ',', '.')         }} €<br/>
+            <strong>Livraison  :</strong> {{ (carrier.price / 100)|number_format(2, ',', '.') }} €
+            <hr>
+            <strong>Total : </strong> {{ ((total / 100) + (carrier.price / 100))|number_format(2, ',', '.') }} €
+            <a href="{{path('checkout')}}" class="btn btn-secondary mb-2 fs-5" id="checkout-button">Payer | {{ ((total / 100) + (carrier.price / 100))|number_format(2, ',', '.') }} €</a>
+        </div>
+    </div>
+{% endblock %}

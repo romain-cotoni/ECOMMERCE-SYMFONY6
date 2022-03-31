@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+    
+    <div class="row mx-0">
+        <div class="col-2 mt-5">
+            <h3 class="text-center display-6">Filtrer</h3>
+            {{ form_start(form)             }}
+            {{ form_errors(form)            }}
+            {{ form_row(form.string)        }}
+            <h3 class="text-center display-6">Catégories</h3>
+            {{ form_widget(form.categories) }}
+            {{ form_row(form.submit)        }}
+            {{ form_end(form)               }}
+        </div>
+        
+        <div class="col-10">
+            <h3 class="text-center display-6 mt-5">Les articles à la vente</h3>
+            <div class="d-flex justify-content-center flex-wrap">
+                {% for article in articles %}
+                    <div class="col-md-4 mb-3 fs-5">
+                        <div class="product-item text-center mx-1">
+                            <a href="{{ path('article',{'slug':article.slug}) }}">
+                                <img src="/uploads/{{article.image}}" alt="{{article.name}}" class="img-fluid">
+                                <h5 class="fs-4">{{article.name}}</h5>
+                                <span class="">{{(article.price/100)|number_format(2,',','.')}} €</span>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

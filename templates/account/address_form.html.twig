@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une adresse - ecommerce{% endblock %}
+
+{% block body %}
+    <h1 class="ms-5 my-2 display-5 text-center">Gérer mes adresse</h1>
+    <a href="{{path('account_address')}}" class="btn btn-secondary fs-5 ms-5 my-3">Retour</a>
+    
+    {{form_start(form)}}
+        <div class="row mx-5 fs-5">
+            <div class="col-md-12">                 {{form_row(form.name)     }}</div>
+            <div class="col-md-6">                  {{form_row(form.firstname)}}</div>
+            <div class="col-md-6">                  {{form_row(form.lastname) }}</div>
+            <div class="col-md-6">                  {{form_row(form.company)  }}</div>
+            <div class="col-md-6">                  {{form_row(form.address)  }}</div>
+            <div class="col-md-6">                  {{form_row(form.postal)   }}</div>
+            <div class="col-md-6">                  {{form_row(form.city)     }}</div>
+            <div class="col-md-6">                  {{form_row(form.pays)     }}</div>
+            <div class="col-md-6">                  {{form_row(form.phone)    }}</div>
+            <div class="col-md-12 text-center my-3">{{form_row(form.submit)   }}</div>
+        </div>
+    {{form_end(form)}}
+{% endblock %}
